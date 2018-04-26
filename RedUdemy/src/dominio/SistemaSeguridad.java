@@ -5,21 +5,22 @@
  */
 package dominio;
 
+import java.util.List;
+
 /**
  *
  * @author Mario
  */
-public class SistemaSeguridad {
-    private Red red;
+public abstract class SistemaSeguridad {
+    protected Red red;
     
     public SistemaSeguridad(Red red){
         this.red = red;
     }
     
     public boolean actua(){
-        boolean resultado = false;
         System.out.println("Empezando actuación de Sistema de Seguridad");
-        for(Aparato aparato: red.getAparatos()){
+        for(Aparato aparato: getAparatos()){
             if(red.esEstable()){
                 System.out.println("La red se encuentra estable");
                 break;
@@ -27,6 +28,9 @@ public class SistemaSeguridad {
             System.out.println("Apagando "+aparato);
             aparato.apagar();
         }
-        return resultado;
+        return red.esEstable();
     }
+    
+    protected abstract List<Aparato> getAparatos();
+    
 }
