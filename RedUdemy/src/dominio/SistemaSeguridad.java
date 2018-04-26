@@ -12,25 +12,32 @@ import java.util.List;
  * @author Mario
  */
 public abstract class SistemaSeguridad {
+
     protected Red red;
+    private Alarma alarma;
     
-    public SistemaSeguridad(Red red){
+    public SistemaSeguridad(Red red, Alarma alarma) {
         this.red = red;
+        this.alarma = alarma;
     }
-    
-    public boolean actua(){
+
+    public boolean actua() {
         System.out.println("Empezando actuación de Sistema de Seguridad");
-        for(Aparato aparato: getAparatos()){
-            if(red.esEstable()){
+        for (Aparato aparato : getAparatos()) {
+            if (red.esEstable()) {
                 System.out.println("La red se encuentra estable");
                 break;
             }
-            System.out.println("Apagando "+aparato);
-            aparato.apagar();
+            aparato.solicitudApagado();
+            
+        }
+        boolean esEstable = red.esEstable();
+        if(!esEstable){
+            alarma.activa();
         }
         return red.esEstable();
     }
-    
+
     protected abstract List<Aparato> getAparatos();
-    
+
 }

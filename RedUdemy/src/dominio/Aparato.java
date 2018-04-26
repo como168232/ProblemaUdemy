@@ -3,6 +3,7 @@ public class Aparato {
     private String nombre;
     private boolean encendido;
     private final int consumo;
+    
 
     public Aparato(String nombre, int consumo) {
         this.nombre = nombre;
@@ -13,7 +14,7 @@ public class Aparato {
         return encendido;
     }
     
-    public void apagar() {
+    protected void apagar() {
         encendido = false;
     }
     
@@ -34,9 +35,21 @@ public class Aparato {
 
     @Override
     public String toString() {
-        return "Aparato [nombre=" + nombre + ", consumo=" + consumo + ", encendido=" + encendido + ']';
+        return "Aparato [nombre=" + nombre + ", consumo=" + consumo + ", encendido=" + getEncendido() + ']';
+    }
+
+    public void solicitudApagado() {
+        System.out.println("Solicitud de Apagado aceptada "+this);
+        apagar();
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    protected boolean getEncendido() {
+        return encendido;
     }
     
-    
-    
+   
 }

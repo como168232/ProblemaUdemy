@@ -17,8 +17,8 @@ import java.util.List;
  */
 public class SistemaSeguridadMenorPotenciaPrimero extends SistemaSeguridad {
 
-    public SistemaSeguridadMenorPotenciaPrimero(Red red) {
-        super(red);
+    public SistemaSeguridadMenorPotenciaPrimero(Red red, Alarma alarma) {
+        super(red,alarma);
     }
 
     @Override
